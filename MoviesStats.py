@@ -2,6 +2,10 @@ import requests
 import json
 from pytube import YouTube
 
+VIDEO_HEADERS = ('videoId', 'regionCode', 'publishedAt', 'channelId', 'title', 'description',
+                 'liveBroadcastContent', 'viewCount', 'likeCount', 'dislikeCount', 'favoriteCount',
+                 'commentCount', 'videoLicense', 'type')
+
 
 class MoviesStats:
     def __init__(self, api_key, duration, views_or_rating, topic, license_type, region_code):
@@ -28,13 +32,6 @@ class MoviesStats:
             data['items'].extend(data2['items'])
         self.chosen_videos = data
 
-    def get_comment_stats(self):
-        for video in self.video_ids:
-            url = f"https://www.googleapis.com/youtube/v3/commentThreads?key={self.api_key}&videoId={video}&part=snippet&maxResults=100&order=relevance"
-            json_url = requests.get(url)
-            data = json.loads(json_url.text)
-            self.comments = data
-
     def retrieve_ids(self):
         for video in self.chosen_videos['items']:
             self.video_ids.append(video['id']['videoId'])
@@ -45,14 +42,12 @@ class MoviesStats:
             stream = yt.streams.first()
             stream.download('/movies')
 
-    def check_sentiment(self):
-        pass #todo
-
     def get_results(self):
         print(self.video_ids)
 
-    def get_comment_results(self):
-        print(self.comments)
+    def export_to_excel(self):
+        pass #todo
+
 
 
 
