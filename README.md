@@ -1,5 +1,7 @@
 # Master Thesis
 
+This is my app for downloading metadata of selected videos and comments
+
 To install pytube3
     
     Go to the pytube/extract.py (in pytube library - ../site-packages/pytube/extract.py)
@@ -7,3 +9,14 @@ To install pytube3
     Replace 'cipher' with 'signatureCipher' and save it.
     
     then type 'python -m pip install git+https://github.com/nficano/pytube' to cmd
+
+To run app:
+
+    python3 main.py
+
+
+Folders:
+
+- archive -> contains archived scripts
+- documents -> contains example outputs
+- output -> contains output csv files

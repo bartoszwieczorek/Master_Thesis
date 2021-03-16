@@ -1,22 +1,35 @@
+"""
+Tool for getting metadata of selected videos and comments
+"""
+__author__ = 'Bartosz Wieczorek'
+
 from MoviesStats import MoviesStats
 from CommentStats import CommentStats
+from datetime import datetime
 
 API_KEY = 'AIzaSyC72fpF2VCnfok9Ia8VI3iJEA0eX3mGxIU'
 COUNTRY = 'PL'
-#DURATION = 'any'/'long'/'medium'/'short'
-#ORDER = 'rating'/'viewCount'
-# /m/02vx4  ->  Football
-#LICENSE = 'any'/'creativeCommon'/'youtube'
+EXEC_TIME = datetime.now().strftime("%y%m%d_%H%M%S")
+# DURATION = 'any'/'long'/'medium'/'short'
+# ORDER = 'rating'/'viewCount'
+# TOPIC = '/m/02vx4'  ->  Football. Full list available in documents/topics.txt
+# LICENSE = 'any'/'creativeCommon'/'youtube'
 
 
-MoviesStats1 = MoviesStats(API_KEY, 'short', 'viewCount', '/m/02vx4', 'youtube', COUNTRY)
-MoviesStats1.get_popular_videos()
-print(MoviesStats1.chosen_videos)
-MoviesStats1.retrieve_ids()
-MoviesStats1.get_results()
-print(len(MoviesStats1.video_ids))
+def main():
+    MoviesStatsObject = MoviesStats(API_KEY, 'short', 'viewCount', '/m/02vx4', 'youtube', COUNTRY, EXEC_TIME)
+    MoviesStatsObject.get_popular_videos()
+    MoviesStatsObject.retrieve_ids()
+    MoviesStatsObject.get_results()
+    MoviesStatsObject.export_to_csv()
+
+    CommentStatsObject = CommentStats(API_KEY, EXEC_TIME)
+    CommentStatsObject.get_comment_stats(MoviesStatsObject.video_ids)
+    CommentStatsObject.get_comment_results()
+    CommentStatsObject.export_to_csv()
 
 
-CommentStats1 = CommentStats(API_KEY)
-CommentStats1.get_comment_stats(MoviesStats1.video_ids)
-CommentStats1.get_comment_results()
+if __name__ == '__main__':
+    main()
+
+
