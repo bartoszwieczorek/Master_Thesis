@@ -17,15 +17,12 @@ EXEC_TIME = datetime.now().strftime("%y%m%d_%H%M%S")
 
 
 def main():
-    MoviesStatsObject = MoviesStats(API_KEY, 'short', 'viewCount', '/m/02vx4', 'youtube', COUNTRY, EXEC_TIME)
+    MoviesStatsObject = MoviesStats(API_KEY, 'short', 'viewCount', ('/m/02vx4', 'football'), 'youtube', COUNTRY, EXEC_TIME)
     MoviesStatsObject.get_popular_videos()
-    MoviesStatsObject.retrieve_ids()
-    MoviesStatsObject.get_results()
     MoviesStatsObject.export_to_csv()
 
     CommentStatsObject = CommentStats(API_KEY, EXEC_TIME)
     CommentStatsObject.get_comment_stats(MoviesStatsObject.video_ids)
-    CommentStatsObject.get_comment_results()
     CommentStatsObject.export_to_csv()
 
 

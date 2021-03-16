@@ -19,4 +19,7 @@ Folders:
 
 - archive -> contains archived scripts
 - documents -> contains example outputs
+- movies -> contains downloaded movies  
 - output -> contains output csv files
+    - movies csv "{%y%m%d_%H%M%S}\_\_movies_{length of video}\_{type of order}\_{topic}\_{type of license}\_{country}.csv"
+    - comments csv "{%y%m%d_%H%M%S}\_\_comments.csv"
