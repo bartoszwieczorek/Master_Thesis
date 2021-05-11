@@ -1,9 +1,13 @@
 import requests
 import json
 import csv
+from textblob import TextBlob
+from textblob.exceptions import NotTranslated
+from googletrans import Translator
 
 
-COMMENT_HEADERS = ('videoId', 'id', 'textDisplay', 'likeCount', 'publishedAt', 'totalReplyCount')
+COMMENT_HEADERS = ('videoId', 'id', 'textDisplay', 'likeCount', 'publishedAt',
+                   'totalReplyCount', 'polarity', 'subjectivity')
 
 
 class CommentStats:
@@ -35,11 +39,19 @@ class CommentStats:
 
             for element in self.comments:
                 try:
+                    text = element['snippet']['topLevelComment']['snippet']['textDisplay']
+                    text_translated = Translator().translate(text).text
+                    text_blob = TextBlob(text_translated)
+
+                    polarity = text_blob.sentiment.polarity
+                    subjectivity = text_blob.sentiment.subjectivity
                     csv_writer.writerow({'videoId': element['snippet']['videoId'], 'id': element['id'],
-                                         'textDisplay': element['snippet']['topLevelComment']['snippet']['textDisplay'],
+                                         'textDisplay': text,
                                          'likeCount': element['snippet']['topLevelComment']['snippet']['likeCount'],
                                          'publishedAt': element['snippet']['topLevelComment']['snippet']['publishedAt'],
-                                         'totalReplyCount': element['snippet']['totalReplyCount']
+                                         'totalReplyCount': element['snippet']['totalReplyCount'],
+                                         'polarity': polarity,
+                                         'subjectivity': subjectivity
                                          })
                 except Exception as e:
                     print(f'An exception of type {type(e).__name__} occured. Arguments: {e.args}\n')

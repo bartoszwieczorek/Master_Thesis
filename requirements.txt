@@ -1,2 +1,5 @@
 pytube3==9.6.4
 requests
+textblob==0.15.3
+pandas
+matplotlib
