@@ -3,3 +3,5 @@ requests
 textblob==0.15.3
 pandas
 matplotlib
+scipy
+tikzplotlib

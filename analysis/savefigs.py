@@ -11,7 +11,6 @@ for topic in topics:
 
     plt.figure(figsize=[16, 12])
     plt.plot(youtube['viewCount'], youtube['likeCount']/(youtube['dislikeCount']+youtube['likeCount']), 'r.--', label='youtube')
-    # plt.plot(creative['viewCount'], creative['likeCount']/(creative['likeCount']+creative['dislikeCount']), 'g.--', label='creative Common')
 
     plt.legend()
     plt.title(topic)
@@ -23,7 +22,7 @@ for topic in topics:
     youtube = df.loc[(df['videoLicense'] == 'youtube') & (df['topic'] == topic)]
 
     plt.figure(figsize=[16, 12])
-    # plt.plot(youtube['viewCount'], youtube['likeCount']/(youtube['dislikeCount']+youtube['likeCount']), 'r.--', label='youtube')
+    
     plt.plot(creative['viewCount'], creative['likeCount']/(creative['likeCount']+creative['dislikeCount']), 'g.--', label='creative Common')
 
     plt.legend()
