@@ -1,6 +1,6 @@
 # Master Thesis
 
-This is my app for downloading metadata of selected videos and comments
+The system for downloading metadata of selected videos and comments
 
 To install pytube3
     

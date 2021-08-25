@@ -30,7 +30,7 @@ API_KEYS = ['AIzaSyAFM0Ubeuuzo-hDS2WtBNVlNk2npx7DhT8']
 
 
 def get_topics():
-    df = pd.read_csv('documents/topics.csv', header=None, skiprows=55)#, skiprows=54
+    df = pd.read_csv('documents/topics.csv', header=None)#, skiprows=54
     output = dict(df.to_numpy())
     return output
 

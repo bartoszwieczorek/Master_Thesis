@@ -43,4 +43,4 @@ for file in files2:
 
 all_dataframes = pd.concat(all_df)
 
-all_dataframes.to_csv('merged.csv', index=False)
+all_dataframes.to_csv('all_data.csv', index=False)

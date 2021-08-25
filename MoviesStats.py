@@ -30,7 +30,6 @@ class MoviesStats:
         data = json.loads(json_url.text)
         try:
             if data['error']['code'] == 403:
-                print('xd')
                 self.INDEX += 1
             url = f"https://www.googleapis.com/youtube/v3/search?part=snippet&key={self.api_keys[self.INDEX]}&maxResults=50&videoDuration={self.duration}&regionCode={self.region_code}&order={self.views_or_rating}&topicId={self.topic}&videoLicense={self.license_type}&type=video"
             json_url = requests.get(url)
