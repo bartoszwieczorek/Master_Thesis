@@ -17,6 +17,7 @@ To run app:
 
 Folders:
 
+- analysis -> contains seperated scripts, used to generate charts or CSVs with calculated data
 - archive -> contains archived scripts
 - documents -> contains example outputs
 - movies -> contains downloaded movies  
